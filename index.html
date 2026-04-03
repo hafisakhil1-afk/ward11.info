@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shamseena MK — Ward 11 Councillor, Thalassery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Taviraj:ital,wght@0,300;0,400;0,600;1,300&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --green:     #0a5c2e;
+      --green-lt:  #0e7a3e;
+      --green-xs:  #d4ead9;
+      --gold:      #c8941a;
+      --gold-lt:   #f0c050;
+      --white:     #ffffff;
+      --off-white: #f5f7f5;
+      --ink:       #0d1f14;
+      --mist:      #e8f0ea;
+      --star:      #e8b400;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Barlow',sans-serif; background:var(--off-white); color:var(--ink); overflow-x:hidden; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background:var(--green);
+      padding:.45rem 4rem;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .topbar-left { font-size:.75rem; color:rgba(255,255,255,.7); letter-spacing:.06em; }
+    .topbar-right { display:flex; gap:1.6rem; }
+    .topbar-right a { font-size:.75rem; color:rgba(255,255,255,.7); text-decoration:none; letter-spacing:.06em; transition:color .2s; }
+    .topbar-right a:hover { color:var(--gold-lt); }
+
+    /* ── NAV ── */
+    nav {
+      position:sticky; top:0; z-index:200;
+      background:#fff;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.9rem 4rem;
+      border-bottom:3px solid var(--green);
+      box-shadow:0 2px 20px rgba(10,92,46,.1);
+    }
+    .nav-brand { display:flex; align-items:center; gap:1rem; text-decoration:none; }
+    .nav-emblem {
+      width:48px; height:48px; border-radius:50%;
+      background:var(--green);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; font-weight:900; color:#fff;
+      font-family:'Playfair Display',serif;
+      flex-shrink:0;
+      box-shadow:0 2px 8px rgba(10,92,46,.3);
+    }
+    .nav-name { line-height:1.2; }
+    .nav-name strong { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--green); display:block; }
+    .nav-name span { font-size:.72rem; color:#666; letter-spacing:.08em; text-transform:uppercase; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:.83rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); text-decoration:none; transition:color .2s; padding-bottom:2px; border-bottom:2px solid transparent; }
+    .nav-links a:hover { color:var(--green); border-bottom-color:var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height:92vh;
+      display:grid; grid-template-columns:1.1fr .9fr;
+      background: linear-gradient(135deg, var(--green) 0%, #073d1e 60%, #051a0d 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-bg-pattern {
+      position:absolute; inset:0; pointer-events:none;
+      background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 0, transparent 50%);
+      background-size: 28px 28px;
+    }
+    .hero-left {
+      padding:6rem 3rem 5rem 4rem;
+      display:flex; flex-direction:column; justify-content:center;
+      position:relative; z-index:2;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+      border-radius:2rem; padding:.4rem 1rem;
+      font-size:.73rem; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--gold-lt); font-weight:500; margin-bottom:2rem;
+      width:fit-content;
+    }
+    .hero-badge::before { content:'★'; color:var(--star); }
+    .hero-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.6rem,5vw,4.8rem);
+      font-weight:900; color:#fff; line-height:1.05;
+      margin-bottom:.6rem;
+    }
+    .hero-subtitle-name {
+      font-family:'Taviraj',serif;
+      font-size:clamp(1rem,2vw,1.4rem);
+      font-weight:300; font-style:italic;
+      color:var(--gold-lt); margin-bottom:2rem;
+      letter-spacing:.04em;
+    }
+    .hero-desc {
+      font-size:1rem; line-height:1.75; color:rgba(255,255,255,.75);
+      font-weight:300; max-width:500px; margin-bottom:2.8rem;
+    }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary {
+      background:var(--gold); color:var(--ink);
+      padding:.85rem 2rem; border-radius:.4rem;
+      font-size:.85rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+      text-decoration:none; transition:background .2s, transform .2s;
+      border:none; cursor:pointer;
+    }
+    .btn-primary:hover { background:var(--gold-lt); transform:translateY(-2px); }
+    .btn-outline {
+      background:transparent; color:#fff;
+      padding:.85rem 2rem; border-radius:.4rem;
+      font-size:.85rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+      text-decoration:none; border:1.5px solid rgba(255,255,255,.35);
+      transition:border-color .2s, color .2s, transform .2s;
+    }
+    .btn-outline:hover { border-color:#fff; transform:translateY(-2px); }
+
+    /* stats strip inside hero */
+    .hero-stats {
+      display:flex; gap:2.5rem; margin-top:3.5rem;
+      padding-top:2rem; border-top:1px solid rgba(255,255,255,.12);
+    }
+    .hero-stat-num {
+      font-family:'Playfair Display',serif; font-size:2rem; font-weight:700;
+      color:var(--gold-lt); line-height:1;
+    }
+    .hero-stat-label { font-size:.75rem; color:rgba(255,255,255,.5); letter-spacing:.08em; text-transform:uppercase; margin-top:.3rem; }
+
+    /* hero right — photo */
+    .hero-right {
+      display:flex; align-items:flex-end; justify-content:center;
+      padding:3rem 3rem 0; position:relative; z-index:2;
+    }
+    .hero-photo-wrap {
+      width:clamp(240px,30vw,380px);
+      position:relative;
+    }
+    .hero-photo-frame {
+      width:100%; aspect-ratio:3/4;
+      border-radius:1rem 1rem 0 0;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.07);
+      box-shadow:0 -20px 60px rgba(0,0,0,.3), inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+    .hero-photo-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hero-photo-placeholder {
+      width:100%; height:100%;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.25); gap:.8rem;
+      font-family:'Taviraj',serif; font-style:italic; font-size:.9rem;
+    }
+    .hero-photo-tag {
+      position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+      background:var(--gold); color:var(--ink);
+      font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      padding:.5rem 1.4rem; border-radius:.4rem .4rem 0 0;
+      white-space:nowrap;
+    }
+    /* green diagonal accent */
+    .hero-accent {
+      position:absolute; bottom:0; left:0;
+      width:100%; height:6px;
+      background:linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 50%, var(--gold) 100%);
+    }
+
+    /* ── PARTY BAND ── */
+    .party-band {
+      background:#fff; border-bottom:1px solid var(--green-xs);
+      padding:1.2rem 4rem;
+      display:flex; align-items:center; justify-content:center; gap:3rem;
+      flex-wrap:wrap;
+    }
+    .party-item {
+      display:flex; align-items:center; gap:.7rem;
+      font-size:.82rem; letter-spacing:.07em; text-transform:uppercase; font-weight:500; color:var(--green);
+    }
+    .party-dot { width:8px; height:8px; border-radius:50%; background:var(--green); flex-shrink:0; }
+    .party-divider { width:1px; height:24px; background:var(--green-xs); }
+
+    /* ── SECTIONS ── */
+    section { padding:5rem 4rem; }
+    .sec-label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:.6rem; }
+    .sec-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:700; color:var(--green); line-height:1.15; margin-bottom:1.2rem; }
+    .sec-body { font-size:.97rem; line-height:1.8; color:#3a5040; font-weight:300; max-width:640px; }
+
+    /* ── ABOUT ── */
+    #about { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; background:#fff; }
+    .about-img-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .about-img-card {
+      border-radius:.8rem; overflow:hidden; background:var(--green-xs);
+      aspect-ratio:1; box-shadow:0 6px 20px rgba(10,92,46,.1);
+    }
+    .about-img-card:first-child { grid-column:1/-1; aspect-ratio:16/9; }
+    .about-img-card img { width:100%; height:100%; object-fit:cover; display:block; }
+    .about-img-card .img-ph {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:.5rem;
+      color:var(--green); opacity:.35; font-size:.8rem; font-style:italic;
+      font-family:'Taviraj',serif;
+    }
+    .about-quote {
+      margin-top:2rem; padding:1.5rem 1.5rem 1.5rem 2rem;
+      border-left:4px solid var(--gold);
+      background:var(--off-white); border-radius:0 .6rem .6rem 0;
+      font-family:'Taviraj',serif; font-style:italic;
+      font-size:1.05rem; color:var(--green); line-height:1.6;
+    }
+
+    /* ── WORK AREAS ── */
+    #work { background:var(--green); }
+    #work .sec-label { color:var(--gold-lt); }
+    #work .sec-title { color:#fff; }
+    .work-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.2rem; margin-top:2.5rem; }
+    .work-card {
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+      border-radius:.8rem; padding:1.8rem 1.5rem;
+      transition:background .3s, transform .3s;
+    }
+    .work-card:hover { background:rgba(255,255,255,.14); transform:translateY(-4px); }
+    .work-icon { font-size:2rem; margin-bottom:1rem; }
+    .work-name { font-family:'Playfair Display',serif; font-size:1.1rem; color:#fff; font-weight:700; margin-bottom:.5rem; }
+    .work-desc { font-size:.85rem; line-height:1.6; color:rgba(255,255,255,.6); font-weight:300; }
+
+    /* ── GALLERY ── */
+    #gallery { background:var(--ink); }
+    #gallery .sec-label { color:var(--gold-lt); }
+    #gallery .sec-title { color:#fff; }
+    #gallery .sec-body { color:rgba(255,255,255,.45); }
+    .gallery-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-top:2rem;
+    }
+    .g-item { border-radius:.6rem; overflow:hidden; background:rgba(255,255,255,.04); aspect-ratio:1; position:relative; }
+    .g-item.wide { grid-column:span 2; aspect-ratio:2/1; }
+    .g-item img, .g-item video { width:100%; height:100%; object-fit:cover; display:block; }
+    .g-item .g-ph {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:.4rem;
+      color:rgba(255,255,255,.18); font-size:.78rem; font-style:italic;
+      font-family:'Taviraj',serif;
+    }
+
+    /* ── MOTIVATIONAL ── */
+    #motivation { background:var(--off-white); text-align:center; }
+    .motivation-intro { max-width:560px; margin:0 auto 3rem; }
+    .q-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.4rem; }
+    .q-card {
+      background:#fff; border-radius:.8rem;
+      padding:2rem 1.8rem;
+      border-top:3px solid var(--green);
+      box-shadow:0 4px 16px rgba(10,92,46,.06);
+      text-align:left;
+    }
+    .q-text { font-family:'Taviraj',serif; font-style:italic; font-size:1.05rem; line-height:1.6; color:var(--green); margin-bottom:.8rem; }
+    .q-cite { font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-style:normal; }
+
+    /* ── CONTACT ── */
+    #contact { display:grid; grid-template-columns:1fr 1fr; gap:5rem; background:#fff; }
+    .contact-item { display:flex; gap:1rem; margin-bottom:1.6rem; align-items:flex-start; }
+    .c-icon { width:2.4rem; height:2.4rem; border-radius:.5rem; background:var(--green-xs); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+    .c-label { font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:.25rem; font-weight:600; }
+    .c-val { font-size:.95rem; color:#3a5040; line-height:1.5; }
+    .contact-form input, .contact-form textarea {
+      width:100%; background:var(--off-white); border:1.5px solid var(--green-xs);
+      border-radius:.5rem; padding:.85rem 1.1rem;
+      font-family:'Barlow',sans-serif; font-size:.92rem; color:var(--ink);
+      margin-bottom:.9rem; outline:none; transition:border-color .3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color:var(--green); }
+    .contact-form textarea { height:120px; resize:vertical; }
+    .contact-form button {
+      background:var(--green); color:#fff; border:none; border-radius:.5rem;
+      padding:.85rem 2.2rem; cursor:pointer;
+      font-family:'Barlow',sans-serif; font-size:.85rem; font-weight:600;
+      letter-spacing:.08em; text-transform:uppercase;
+      transition:background .2s, transform .2s;
+    }
+    .contact-form button:hover { background:var(--green-lt); transform:translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background:var(--green); color:rgba(255,255,255,.5);
+      padding:2.5rem 4rem;
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:1rem;
+    }
+    .footer-left { font-size:.82rem; line-height:1.6; }
+    .footer-left strong { color:#fff; font-size:.95rem; display:block; margin-bottom:.2rem; }
+    .footer-right { font-size:.75rem; letter-spacing:.06em; text-align:right; }
+    footer a { color:var(--gold-lt); text-decoration:none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity:0; transform:translateY(24px); animation:fu .65s ease forwards; }
+    @keyframes fu { to { opacity:1; transform:none; } }
+    .d1{animation-delay:.1s} .d2{animation-delay:.22s} .d3{animation-delay:.34s} .d4{animation-delay:.46s}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px) {
+      .topbar, nav { padding:.6rem 1.5rem; }
+      .nav-links { display:none; }
+      #hero { grid-template-columns:1fr; min-height:auto; }
+      .hero-right { display:none; }
+      .hero-left { padding:5rem 1.5rem 3rem; }
+      .party-band { padding:1rem 1.5rem; gap:1.2rem; }
+      section { padding:3.5rem 1.5rem; }
+      #about, #contact { grid-template-columns:1fr; gap:2.5rem; }
+      .gallery-grid { grid-template-columns:1fr 1fr; }
+      footer { padding:2rem 1.5rem; flex-direction:column; text-align:center; }
+      .footer-right { text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar-left">Ward 11 — Kannothpalli · Thalassery Municipality · Kannur District, Kerala</span>
+  <div class="topbar-right">
+    <a href="#contact">Contact</a>
+    <a href="#work">Services</a>
+    <a href="tel:+91XXXXXXXXXX">📞 Call</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <div class="nav-emblem">11</div>
+    <div class="nav-name">
+      <strong>Shamseena MK</strong>
+      <span>Ward 11 Councillor · Thalassery</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#motivation">Vision</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-left">
+    <span class="hero-badge fade-up">IUML · Ward 11 · Thalassery Municipality</span>
+    <h1 class="hero-title fade-up d1">Shamseena<br>MK</h1>
+    <p class="hero-subtitle-name fade-up d2">Ward Councillor — Kannothpalli, Thalassery</p>
+    <p class="hero-desc fade-up d3">
+      Elected representative of Ward 11, Kannothpalli — working every day to improve
+      roads, drainage, water supply, street lighting, and the quality of life for every
+      resident of our community.
+    </p>
+    <div class="hero-actions fade-up d4">
+      <a href="#contact" class="btn-primary">Reach Out</a>
+      <a href="#work" class="btn-outline">Our Work</a>
+    </div>
+    <div class="hero-stats fade-up d4">
+      <div>
+        <div class="hero-stat-num">Ward 11</div>
+        <div class="hero-stat-label">Kannothpalli</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">IUML</div>
+        <div class="hero-stat-label">Party</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">TLY</div>
+        <div class="hero-stat-label">Thalassery Municipality</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <img src="images/portrait.jpg" alt="Shamseena MK"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="hero-photo-placeholder" style="display:none">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          portrait.jpg
+        </div>
+      </div>
+      <div class="hero-photo-tag">Shamseena MK · Councillor</div>
+    </div>
+  </div>
+  <div class="hero-accent"></div>
+</section>
+
+<!-- PARTY BAND -->
+<div class="party-band">
+  <div class="party-item"><div class="party-dot"></div>Indian Union Muslim League (IUML)</div>
+  <div class="party-divider"></div>
+  <div class="party-item"><div class="party-dot"></div>Ward 11 — Kannothpalli</div>
+  <div class="party-divider"></div>
+  <div class="party-item"><div class="party-dot"></div>Thalassery Municipality</div>
+  <div class="party-divider"></div>
+  <div class="party-item"><div class="party-dot"></div>Kannur District, Kerala</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-grid">
+    <div class="about-img-card">
+      <img src="images/about-main.jpg" alt="Shamseena MK at work"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="img-ph" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        about-main.jpg
+      </div>
+    </div>
+    <div class="about-img-card">
+      <img src="images/about-2.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="img-ph" style="display:none">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        about-2.jpg
+      </div>
+    </div>
+    <div class="about-img-card">
+      <img src="images/about-3.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="img-ph" style="display:none">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        about-3.jpg
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="sec-label">About</p>
+    <h2 class="sec-title">A voice for Kannothpalli in the Municipal Council.</h2>
+    <p class="sec-body">
+      Shamseena MK is the elected councillor representing Ward 11 (Kannothpalli) in the
+      Thalassery Municipality, Kannur District, Kerala. As a proud member of the
+      Indian Union Muslim League (IUML), she was chosen by the residents of Kannothpalli
+      to be their voice in local governance.
+    </p>
+    <br>
+    <p class="sec-body">
+      A ward councillor's role touches the everyday lives of residents — from ensuring roads
+      are repaired and drains are clean, to making sure street lights work and water supply
+      is uninterrupted. Shamseena MK is committed to being accessible, responsive, and
+      dedicated to the welfare of every household in Ward 11.
+    </p>
+    <blockquote class="about-quote">
+      "Development is not just about infrastructure — it is about dignity. Every resident of
+      Kannothpalli deserves clean streets, clean water, and a councillor who listens."
+      <br><br><cite style="font-size:.8rem;color:var(--gold);font-style:normal;letter-spacing:.08em;text-transform:uppercase;">— Shamseena MK</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- WORK AREAS -->
+<section id="work">
+  <div style="text-align:center;margin-bottom:1rem;">
+    <p class="sec-label">Responsibilities</p>
+    <h2 class="sec-title" style="color:#fff;">What your councillor works on</h2>
+    <p class="sec-body" style="color:rgba(255,255,255,.6);margin:0 auto;">
+      As your elected representative, Shamseena MK works across all aspects of local civic life in Ward 11.
+    </p>
+  </div>
+  <div class="work-grid">
+    <div class="work-card"><div class="work-icon">🛣️</div><div class="work-name">Roads &amp; Footpaths</div><p class="work-desc">Repair and maintenance of local roads, footpaths, and street surfaces within Ward 11.</p></div>
+    <div class="work-card"><div class="work-icon">🚰</div><div class="work-name">Water Supply</div><p class="work-desc">Ensuring reliable drinking water supply and resolving pipeline issues for all households.</p></div>
+    <div class="work-card"><div class="work-icon">💡</div><div class="work-name">Street Lighting</div><p class="work-desc">Installation and maintenance of street lights to keep Kannothpalli safe after dark.</p></div>
+    <div class="work-card"><div class="work-icon">🌊</div><div class="work-name">Drainage</div><p class="work-desc">Cleaning and improving drainage systems to prevent flooding and waterlogging.</p></div>
+    <div class="work-card"><div class="work-icon">🏘️</div><div class="work-name">Housing &amp; Welfare</div><p class="work-desc">Helping residents access government housing schemes and welfare programmes.</p></div>
+    <div class="work-card"><div class="work-icon">📋</div><div class="work-name">Complaints &amp; Grievances</div><p class="work-desc">Receiving and resolving resident complaints at the municipal level — your concerns matter.</p></div>
+    <div class="work-card"><div class="work-icon">🌳</div><div class="work-name">Sanitation &amp; Cleanliness</div><p class="work-desc">Waste management, public cleanliness, and maintaining a healthy environment in the ward.</p></div>
+    <div class="work-card"><div class="work-icon">🤝</div><div class="work-name">Community Development</div><p class="work-desc">Supporting local events, cultural activities, and the social well-being of Ward 11 residents.</p></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="sec-label">Gallery</p>
+  <h2 class="sec-title">Photos &amp; Videos</h2>
+  <p class="sec-body">From ward visits, community events, and development works on the ground.</p>
+  <div class="gallery-grid">
+    <div class="g-item wide">
+      <img src="images/gallery-1.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="g-ph" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        gallery-1.jpg
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="images/gallery-2.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="g-ph" style="display:none"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>gallery-2.jpg</div>
+    </div>
+    <div class="g-item">
+      <img src="images/gallery-3.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="g-ph" style="display:none"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>gallery-3.jpg</div>
+    </div>
+    <div class="g-item wide">
+      <video src="videos/promo.mp4" controls poster="images/video-thumb.jpg"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+      <div class="g-ph" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        promo.mp4
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="images/gallery-5.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="g-ph" style="display:none"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>gallery-5.jpg</div>
+    </div>
+    <div class="g-item">
+      <img src="images/gallery-6.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="g-ph" style="display:none"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>gallery-6.jpg</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / MOTIVATION -->
+<section id="motivation">
+  <div class="motivation-intro">
+    <p class="sec-label">Vision &amp; Values</p>
+    <h2 class="sec-title">Words that guide our work</h2>
+    <p class="sec-body" style="margin:0 auto;">The principles behind Ward 11's commitment to the people of Kannothpalli.</p>
+  </div>
+  <div class="q-grid">
+    <div class="q-card"><p class="q-text">"Service to people is service to God. Every small act of help builds a stronger community."</p><cite class="q-cite">— A guiding belief</cite></div>
+    <div class="q-card"><p class="q-text">"A good leader listens before they act. The voice of the people is the foundation of every decision."</p><cite class="q-cite">— Ward 11 Commitment</cite></div>
+    <div class="q-card"><p class="q-text">"Development that leaves no one behind — that is the true meaning of governance."</p><cite class="q-cite">— On inclusive progress</cite></div>
+    <div class="q-card"><p class="q-text">"Clean roads, clean water, and a clean conscience — that is what every resident of Kannothpalli deserves."</p><cite class="q-cite">— Shamseena MK</cite></div>
+    <div class="q-card"><p class="q-text">"Unity among neighbours is the greatest strength a ward can have."</p><cite class="q-cite">— Community Value</cite></div>
+    <div class="q-card"><p class="q-text">"Progress is built brick by brick, step by step — with patience, dedication, and love for the people."</p><cite class="q-cite">— Ward 11 Vision</cite></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div>
+    <p class="sec-label">Get in Touch</p>
+    <h2 class="sec-title">Reach your councillor.</h2>
+    <p class="sec-body" style="margin-bottom:2.5rem;">
+      Have a complaint, request, or suggestion for Ward 11? Shamseena MK is here to listen and help.
+      All messages are responded to with care.
+    </p>
+    <div class="contact-item">
+      <div class="c-icon">📍</div>
+      <div><div class="c-label">Ward</div><div class="c-val">Ward 11 — Kannothpalli<br>Thalassery Municipality, Kannur District, Kerala</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="c-icon">📞</div>
+      <div><div class="c-label">Phone / WhatsApp</div>
+        <!-- 📞 REPLACE with real number -->
+        <div class="c-val">+91 XXXXX XXXXX</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="c-icon">✉️</div>
+      <div><div class="c-label">Email</div>
+        <!-- 📧 REPLACE with real email -->
+        <div class="c-val">shamseena@ward11.info</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="c-icon">🏛️</div>
+      <div><div class="c-label">Party</div><div class="c-val">Indian Union Muslim League (IUML)</div></div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <input type="text" placeholder="Your Name"/>
+    <input type="tel" placeholder="Your Phone Number"/>
+    <input type="text" placeholder="Your Address / House No."/>
+    <textarea placeholder="Describe your complaint, request, or message for Councillor Shamseena MK..."></textarea>
+    <button type="button">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <strong>Shamseena MK — Ward 11 Councillor</strong>
+    Kannothpalli · Thalassery Municipality · Kannur District, Kerala<br>
+    <a href="mailto:shamseena@ward11.info">shamseena@ward11.info</a> · ward11.info
+  </div>
+  <div class="footer-right">
+    Indian Union Muslim League (IUML)<br>
+    © 2025 ward11.info
+  </div>
+</footer>
+
+</body>
+</html>
